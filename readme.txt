@@ -1,2 +1,3 @@
 Integrantes:
-	Orellana Mendoza, Efrain Abraham
+	Orellana Mendoza, Efrain Abraham.
+    Castro Jiménez, Andrea Victoria.
