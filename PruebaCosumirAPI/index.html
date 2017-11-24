@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+	<title>Pokedex</title>
+
+</head>
+<body>
+	<h1>pokedex</h1>
+	<input type="text" id="id" placeholder="ingresa nombre o Id de pokemon">
+	<button onclick="buscar()">buscar</button>
+	<img id="img" src="" alt="pokemon">
+	<p id="nombre"></p>
+	<img id="img2" src="" >
+	
+<script>
+
+function buscar() {
+
+	var id= document.getElementById("id").value;
+	document.getElementById("nombre").innerHTML="cargando..."
+
+	fetch('https://pokeapi.co/api/v2/pokemon/'+id)//buscamos el pokemon d la api pasandole el id o el nombre.
+   .then( function (r) { return r.json(); })
+   .then( function(datos) {
+
+   		console.log(datos);
+   		//antes de sacar el sprite del json solo usabamos el link 
+   		//var src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+id+".png";
+   		var salida ="";
+   		var url = JSON.stringify(datos.sprites.front_default);//esto vine con comillas extra las vamos a quitar el primer y ultimo caracter.
+   		var url = url.slice(1, -1);
+   		document.getElementById("img").src=url;//para mostrar el sprite
+  	 	var nombre = JSON.stringify(datos.name);//así obtenemos info del obj que llamamos de la api
+  	 	var tipo1 = JSON.stringify(datos.types[0].type.name);
+
+  	 	//vamos a concatenar la salida
+
+  	 	salida= "nombre: "+nombre+" tipos: "+tipo1; 
+	 		 	
+  	 	
+  	 			try {
+  	 				var tipo2 = JSON.stringify(datos.types[1].type.name);
+    				salida +=" , "+tipo2;
+						}
+				catch(err) {
+					console.log(err);//error que no existe la crap
+					document.getElementById("nombre").innerHTML="nombre: "+nombre+" tipos: "+tipo1; 
+							}
+				//mostrar la consulta a la api
+				document.getElementById("nombre").innerHTML=salida;
+/*
+  	 	  	 	if((tipo2 === undefined || tipo2 == null || tipo2 <= 0)){
+  	 	  	 		
+  	 	  	 		document.getElementById("nombre").innerHTML="nombre: "+nombre+" tipos: "+tipo1; 	
+  	 	  	 		console.log("no tiene 2 tipos");
+  	 	  	 	}else{
+  	 	  	 	document.getElementById("nombre").innerHTML="nombre: "+nombre+" tipos: "+tipo1+" , "+ tipo2;
+  	 	  	 	
+
+
+  	 	  	 	}*/
+  	 	
+  	 	
+  	 
+   }).catch(function(error){
+   	console.log("hubo un error",error);
+   	document.getElementById("nombre").innerHTML="se produjo un error"
+   });//en el caso que algo salga mal siempre se va a venir aquí
+		}
+
+
+
+		
+		
+	</script>
+</body>
+</html>
