@@ -2,12 +2,14 @@ var listaPokemones = setLista();
 var select;
 var url;
 var urlImg;
+var img;
 
 
 $( document ).ready(function() {
     select = document.getElementById('s');
     url = "https://pokeapi.co/api/v2/";
     urlImg = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
+    img = document.getElementById("pokeball");
     crearSelect();
 
 });
@@ -62,6 +64,7 @@ function toSelectData(array) {
 
 btnBuscar.onclick = function() {
   var id = select.value;
+  cargando();
   crearImagen(id);
 }
 function buscar(id) {
@@ -80,7 +83,10 @@ function buscar(id) {
 
 function crearImagen(id) {
   var div = document.getElementById("imgDiv")
-  var img = document.createElement("IMG");
   img.setAttribute("src",urlImg+"/"+id+".png");
   div.replaceChild(img,div.childNodes[0]);
+}
+
+function cargando() {
+  img.setAttribute("src","images/loading.gif");
 }
