@@ -1,6 +1,4 @@
-//la variable "ls" siempre tiene que estar al principio porque sino se enoja y tira un error bien feo jajaja
-var ls;
-ls = cargarlistaPokemones();
+var listaPokemones = setLista();
 var select;
 var url;
 var urlImg;
@@ -10,44 +8,55 @@ $( document ).ready(function() {
     select = document.getElementById('s');
     url = "https://pokeapi.co/api/v2/";
     urlImg = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
+    crearSelect();
 
-    //implementacion de Select
-    $('.js-example-basic-single').select2({
-        minimumInputLength:1,
-        data: obtenerArray(),
-        language: "es",
-        placeholder: "Select a state",
-        sorter: function(results) {
-          var query = $('.select2-search__field').val().toLowerCase();
-          return results.sort(function(a, b) {
-            return a.text.toLowerCase().indexOf(query) - b.text.toLowerCase().indexOf(query);
-          });
-        }
-        //
-      });
 });
 
-//carga el archivo json "listaPokemones.js" en ls
-function cargarlistaPokemones() {
+function crearSelect() {
+  //configuracion de select
+  $('.js-example-basic-single').select2({
+      minimumInputLength:1,
+      data: listaPokemones,
+      language: "es",
+      placeholder: "Busca un pokemon",
+      sorter: function(results) {
+        var query = $('.select2-search__field').val().toLowerCase();
+        return results.sort(function(a, b) {
+          return a.text.toLowerCase().indexOf(query) - b.text.toLowerCase().indexOf(query);
+        });
+      }
+    });
+}
+
+//inicializa la variable listaPokemones
+function setLista() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      ls = JSON.parse(this.responseText).results;
+      var response = JSON.parse(this.responseText).results;
+      listaPokemones = toSelectData(response);
     }
   };
   //xhttp.open("GET", "http://pokeapi.co/api/v2/pokemon", true);
   xhttp.open("GET", "listaPokemones.js", true);
   xhttp.send();
+
 }
 
 //transforma el array results de la pokeapi en la estructura requerida por select2
-function obtenerArray() {
-    var array = new Array();
-    for(var i = 1; i < 803; i++){
-        var poke = {"id":i+"","text":ls[i-1].name};
-        array.push(poke);
+function toSelectData(array) {
+    var a = new Array();
+    for(var i = 1; i < array.length; i++){
+      var url = array[i-1].url;
+      var x = url.lastIndexOf("/");
+      var id = url.slice(34, x);
+        if (id != i) {
+          return a;
+        }
+        var poke = {"id":i+"","text":array[i-1].name};
+        a.push(poke);
     }
-    return array;
+    return a;
 }
 
 
