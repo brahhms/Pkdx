@@ -1,4 +1,5 @@
-var listaPokemones = setLista();
+var listaPokemones;
+listaPokemones = setLista();
 var select;
 var url;
 var urlImg;
@@ -9,8 +10,9 @@ $( document ).ready(function() {
     select = document.getElementById('s');
     url = "https://pokeapi.co/api/v2/";
     urlImg = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
-    img = document.getElementById("pokeball");
     crearSelect();
+    img = document.getElementById("pokeball");
+    img.setAttribute("src","images/pokeball.png");
 
 });
 
@@ -19,6 +21,7 @@ function crearSelect() {
   $('.js-example-basic-single').select2({
       minimumInputLength:1,
       data: listaPokemones,
+      width: '200px',
       language: "es",
       placeholder: "Busca un pokemon",
       sorter: function(results) {
@@ -32,17 +35,20 @@ function crearSelect() {
 
 //inicializa la variable listaPokemones
 function setLista() {
-  var xhttp = new XMLHttpRequest();
+  if (window.XMLHttpRequest) {
+    xhttp = new XMLHttpRequest();
+  }else {
+    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       var response = JSON.parse(this.responseText).results;
       listaPokemones = toSelectData(response);
     }
   };
-  //xhttp.open("GET", "http://pokeapi.co/api/v2/pokemon", true);
+  //xhttp.open("GET", "http://pokeapi.salestock.net/api/v2/pokemon", true);
   xhttp.open("GET", "listaPokemones.js", true);
   xhttp.send();
-
 }
 
 //transforma el array results de la pokeapi en la estructura requerida por select2
@@ -63,26 +69,15 @@ function toSelectData(array) {
 
 
 btnBuscar.onclick = function() {
-  var id = select.value;
   cargando();
+  var id = select.value;
   crearImagen(id);
 }
-function buscar(id) {
-  /*
-  var datos = "/"+id+"/";
 
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      //
-    }
-  };
-  xhttp.open("GET",url+datos, true);
-  xhttp.send();*/
-}
+
 
 function crearImagen(id) {
-  var div = document.getElementById("imgDiv")
+  var div = document.getElementById("imgDiv");
   img.setAttribute("src",urlImg+"/"+id+".png");
   div.replaceChild(img,div.childNodes[0]);
 }

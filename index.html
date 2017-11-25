@@ -48,12 +48,13 @@
                 <button id="btnBuscar" class="btn btn-primary">Buscar</button>
 
                 <div id="imgDiv">
-                  <img id="pokeball" src="images/pokeball.png" />
+                  <img id="pokeball" src="images/loading.gif" />
+                </div>
+
+                <div id="info">
                 </div>
 
                 <a href="#btnUsuario" class="btn btn-secondary" id="btnUsuario">mostrarUsuario</a>
-
-
         </div>
         <!-- /#page-content-wrapper -->
 
@@ -61,7 +62,6 @@
     <!-- /#wrapper -->
 
   <script src="ajax.js"></script>
-
   <!-- Boton de desplazamiento (script) -->
   <script>
     $("#btnUsuario").click(function(e) {
@@ -69,6 +69,7 @@
       $("#wrapper").toggleClass("toggled");
     });
   </script>
+
 </body>
 
 </html>
