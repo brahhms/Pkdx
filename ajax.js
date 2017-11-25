@@ -1,20 +1,29 @@
-var listaPokemones;
-listaPokemones = setLista();
-var select;
 var url;
+var select;
 var urlImg;
 var img;
+var listaPokemones;
+
+//inicializa la lista de pokemones
+ajax("listaPokemones.js", function(request){
+    var response = request.currentTarget.response || request.target.responseText;
+    response = JSON.parse(response).results;
+    listaPokemones = toSelectData(response);
+});
+
 
 
 $( document ).ready(function() {
+    url = "http://pokeapi.co/api/v2/";
     select = document.getElementById('s');
-    url = "https://pokeapi.co/api/v2/";
     urlImg = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
-    crearSelect();
-    img = document.getElementById("pokeball");
-    img.setAttribute("src","images/pokeball.png");
-
 });
+
+window.onload = function() {
+  crearSelect();
+  img = document.getElementById("pokeball");
+  img.setAttribute("src","images/pokeball.png");
+}
 
 function crearSelect() {
   //configuracion de select
@@ -33,23 +42,7 @@ function crearSelect() {
     });
 }
 
-//inicializa la variable listaPokemones
-function setLista() {
-  if (window.XMLHttpRequest) {
-    xhttp = new XMLHttpRequest();
-  }else {
-    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-  }
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var response = JSON.parse(this.responseText).results;
-      listaPokemones = toSelectData(response);
-    }
-  };
-  //xhttp.open("GET", "http://pokeapi.salestock.net/api/v2/pokemon", true);
-  xhttp.open("GET", "listaPokemones.js", true);
-  xhttp.send();
-}
+
 
 //transforma el array results de la pokeapi en la estructura requerida por select2
 function toSelectData(array) {
@@ -59,22 +52,19 @@ function toSelectData(array) {
       var x = url.lastIndexOf("/");
       var id = url.slice(34, x);
         if (id != i) {
-          return a;
+            break;
         }
-        var poke = {"id":i+"","text":array[i-1].name};
+        var poke = {'id':i,'text':array[i-1].name};
         a.push(poke);
     }
-    return a;
+    return a
 }
-
 
 btnBuscar.onclick = function() {
   cargando();
   var id = select.value;
   crearImagen(id);
 }
-
-
 
 function crearImagen(id) {
   var div = document.getElementById("imgDiv");
@@ -85,3 +75,12 @@ function crearImagen(id) {
 function cargando() {
   img.setAttribute("src","images/loading.gif");
 }
+
+function ajax(url, success) {
+	    var xhr = new XMLHttpRequest();
+	    if (!('withCredentials' in xhr)) xhr = new XDomainRequest(); // fix IE8/9
+	    xhr.open('GET', url);
+	    xhr.onload = success;
+	    xhr.send();
+	    return xhr;
+	}
