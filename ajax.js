@@ -1,4 +1,6 @@
 var url;
+var epPokemon;
+var epSpecies;
 var select;
 var urlImg;
 var img;
@@ -14,7 +16,10 @@ ajax("listaPokemones.js", function(request){
 
 
 $( document ).ready(function() {
-    url = "http://pokeapi.co/api/v2/";
+    url = "http://pokeapi.salestock.net/api/v2/";
+
+    epPokemon = url + "pokemon/";
+    epSpecies = url + "pokemon-species/";
     select = document.getElementById('s');
     urlImg = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
 });
@@ -48,9 +53,9 @@ function crearSelect() {
 function toSelectData(array) {
     var a = new Array();
     for(var i = 1; i < array.length; i++){
-      var url = array[i-1].url;
-      var x = url.lastIndexOf("/");
-      var id = url.slice(34, x);
+      var cadena = array[i-1].url;
+      var x = cadena.lastIndexOf("/");
+      var id = cadena.slice(34, x);
         if (id != i) {
             break;
         }
@@ -63,7 +68,22 @@ function toSelectData(array) {
 btnBuscar.onclick = function() {
   cargando();
   var id = select.value;
+  getInfo(id);
   crearImagen(id);
+}
+
+function getInfo(id) {
+  ajax(epPokemon+id, function(request) {
+      var response = request.currentTarget.response || request.target.responseText;
+      response = JSON.parse(response);
+      var nombre = response.name;
+
+      var pokemon = new Pokemon(nombre);
+      pokemon.setTipos(response.types);
+      pokemon.setHabilidades(response.abilities)
+      console.log(pokemon);
+
+  });
 }
 
 function crearImagen(id) {
@@ -76,11 +96,35 @@ function cargando() {
   img.setAttribute("src","images/loading.gif");
 }
 
-function ajax(url, success) {
+function ajax(u, success) {
 	    var xhr = new XMLHttpRequest();
 	    if (!('withCredentials' in xhr)) xhr = new XDomainRequest(); // fix IE8/9
-	    xhr.open('GET', url);
+	    xhr.open('GET', u);
 	    xhr.onload = success;
 	    xhr.send();
 	    return xhr;
 	}
+
+
+function Pokemon(sNombre,sInfo){
+    this.nombre = sNombre;      //.name
+    this.lugares;               //.location_area_encounters:url
+    this.tipos;
+    this.habilidades;
+    this.evoluciones = new Array();
+}
+
+Pokemon.prototype.setTipos = function(array) {
+  this.tipos = new Array();
+  for (var i = 0; i < array.length; i++) {
+    var tipo = array[i].type.name;
+    this.tipos.push(tipo);
+  }
+};
+Pokemon.prototype.setHabilidades = function(array) {
+  this.habilidades = new Array();
+  for (var i = 0; i < array.length; i++) {
+    var habilidad = array[i].ability.name;
+    this.habilidades.push(habilidad);
+  }
+}
