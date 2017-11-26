@@ -5,6 +5,7 @@ var select;
 var urlImg;
 var img;
 var listaPokemones;
+var pokemon;
 
 //inicializa la lista de pokemones
 ajax("listaPokemones.js", function(request){
@@ -13,11 +14,8 @@ ajax("listaPokemones.js", function(request){
     listaPokemones = toSelectData(response);
 });
 
-
-
 $( document ).ready(function() {
     url = "http://pokeapi.salestock.net/api/v2/";
-
     epPokemon = url + "pokemon/";
     epSpecies = url + "pokemon-species/";
     select = document.getElementById('s');
@@ -48,7 +46,6 @@ function crearSelect() {
 }
 
 
-
 //transforma el array results de la pokeapi en la estructura requerida por select2
 function toSelectData(array) {
     var a = new Array();
@@ -69,21 +66,41 @@ btnBuscar.onclick = function() {
   cargando();
   var id = select.value;
   getInfo(id);
-  crearImagen(id);
 }
 
+function mostrar() {
+  var info = document.getElementById('info');
+  var texto ="<h4>"+pokemon.nombre+"</h4>"+
+          "<p>"+pokemon.info+"</p>";
+          console.log(texto);
+
+  info.innerHTML = texto;
+}
+
+
 function getInfo(id) {
+  pokemon = new Pokemon();
   ajax(epPokemon+id, function(request) {
       var response = request.currentTarget.response || request.target.responseText;
       response = JSON.parse(response);
-      var nombre = response.name;
 
-      var pokemon = new Pokemon(nombre);
+      pokemon.nombre = response.name;
       pokemon.setTipos(response.types);
       pokemon.setHabilidades(response.abilities)
-      console.log(pokemon);
+
+      ajax(epSpecies+id,function(request) {
+        var response = request.currentTarget.response || request.target.responseText;
+        response = JSON.parse(response);
+        pokemon.info = response.flavor_text_entries[3].flavor_text;
+
+        console.log(pokemon);
+        mostrar();
+        crearImagen(id);
+      
+      });
 
   });
+
 }
 
 function crearImagen(id) {
@@ -106,8 +123,9 @@ function ajax(u, success) {
 	}
 
 
-function Pokemon(sNombre,sInfo){
-    this.nombre = sNombre;      //.name
+function Pokemon(){
+    this.nombre = "";
+    this.info = "";
     this.lugares;               //.location_area_encounters:url
     this.tipos;
     this.habilidades;
@@ -127,4 +145,4 @@ Pokemon.prototype.setHabilidades = function(array) {
     var habilidad = array[i].ability.name;
     this.habilidades.push(habilidad);
   }
-}
+};
