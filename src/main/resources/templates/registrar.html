@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+	<title>registro</title>
+	<div th:replace="fragments/header :: header-css"/>
+</head>
+	<body>
+    
+      <form class="form-signin">
+	        <h2 class="form-heading">Registrar</h2>
+	           
+            <input id="usuario" name="usuario" type="text" class="form-control" placeholder="Username" autofocus="true"/>
+            <input id="clave" name="clave" type="password" class="form-control" placeholder="Password"/>
+            
+            <button onclick="registrame()" class="btn btn-lg btn-primary btn-block" type="button">Registrar</button>
+            <p id="dsp"></p>
+	  </form>
+        
+	
+	<div th:replace="fragments/footer :: footer"/>
+	
+	</body>
+</html>
