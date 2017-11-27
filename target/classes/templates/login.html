@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="es">
+	<title>login</title>
+	<div th:replace="fragments/header :: header-css"/>
+</head>
+	<body>
+
+      
+	<form class="caja">
+	    <h2 class="form-heading">LogIn</h2>
+	       
+	    <input id="usuario" name="username" type="text" class="form-control" placeholder="Usuario" autofocus="true"/>
+	    <input id="clave" name="password" type="password" class="form-control" placeholder="Clave"/>
+	    
+	    <button onclick="logueame()" class="btn btn-lg btn-primary btn-block" type="button">Acceder</button>
+	    <h4 class="text-center"><a href="/registrar">Crear una cuenta</a></h4>
+	    <p id="dsp"></p>
+	 </form>
+        
+	
+
+	
+	<div th:replace="fragments/footer :: footer"/>
+	
+	</body>
+</html>

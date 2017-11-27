@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+	<title>home</title>
+	<div th:replace="fragments/header :: header-css"/>
+</head>
+	<body>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+		    <ul th:fragment="sidebar" class="sidebar-nav">
+		         <li class="sidebar-brand">
+		             <a href="#">Pokedex</a>
+		         </li>
+		         <li>
+		             <a href="/login">IniciarSesion</a>
+		         </li>
+		         <li>
+		             <a href="/registrar">Registrar</a>
+		         </li>
+		      
+		     </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Contenido Principal -->
+        <div id="page-content-wrapper">
+            <div th:replace="fragments/body :: pokemon"/>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+		  <!-- Boton de desplazamiento (script) -->
+		  <script>
+		    $("#btnUsuario").click(function(e) {
+		      e.preventDefault();
+		      $("#wrapper").toggleClass("toggled");
+		    });
+		  </script>
+		  
+		<script src="/src/api.js"></script>
+	
+	</body>
+</html>

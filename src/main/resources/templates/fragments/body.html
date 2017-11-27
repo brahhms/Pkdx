@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+	<div th:fragment="pokemon">
+    	<p><img id="imgTitle" src="images/title.png"/></p>
+
+        <div id="imgDiv">
+          <img id="pokeball" src="images/loading.gif" />
+        </div>
+
+        <select id="s" class="js-example-basic-single" name="state"></select>
+        <button id="btnBuscar" class="btn btn-primary">Buscar</button>
+
+        <div id="info">info</div>
+
+        <a href="#btnUsuario" class="btn btn-primary" id="btnUsuario">mostrarUsuario</a>   
+    </div>
+
+</body>
+</html>
