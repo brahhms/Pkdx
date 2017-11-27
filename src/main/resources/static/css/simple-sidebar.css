@@ -11,6 +11,26 @@ body {
 dd img{
 	height: 80px;
 	width: 80px;
+	display: inline;
+}
+
+.icono{
+	height: 57px;
+	width: 57px;
+	position: absolute;
+	top: 142px;
+	left:42px;
+	border-radius: 50%;
+}
+.icono:hover{
+	height: 60px;
+	width: 60px;
+	top: 140px;
+	left:40px;
+}
+
+dl{
+	background:#BDBDBD;
 }
 
 
@@ -50,10 +70,6 @@ dd img{
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  -moz-animation-name: spin;
--moz-animation-duration: 4000ms;
--moz-animation-iteration-count: infinite;
--moz-animation-timing-function: linear;
 }
 
 #btnUsuario{
@@ -160,7 +176,11 @@ dd img{
   font-size: 21px;
 }
 
-@media(min-width:768px) {
+@media(min-width:480px) {
+	
+#info{
+  width: 450px;
+}
 
   #wrapper {
     padding-left: 0;
@@ -182,4 +202,9 @@ dd img{
     position: relative;
     margin-right: 0;
   }
+}
+@media(min-width:768px) {
+	#info{
+  		width: 700px;
+	}
 }

@@ -23,7 +23,9 @@
 
         <!-- Contenido Principal -->
         <div id="page-content-wrapper">
+        	
             <div th:replace="fragments/body :: pokemon"/>
+            <img class="icono" src="/images/icon.png" onclick="agregar()"/>
         </div>
         <!-- /#page-content-wrapper -->
 
@@ -37,7 +39,7 @@
 		      $("#wrapper").toggleClass("toggled");
 		    });
 		  </script>
-		  
+		  <script src="/src/ajax.js"></script>
 		<script src="/src/api.js"></script>
 	
 	</body>
