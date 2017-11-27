@@ -19,7 +19,7 @@ $( document ).ready(function() {
     epPokemon = url + "pokemon/";
     epSpecies = url + "pokemon-species/";
     select = document.getElementById('s');
-    urlImg = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon";
+    urlImg = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 });
 
 window.onload = function() {
@@ -91,7 +91,7 @@ function mostrar() {
   }
   texto+="<dt>Evoluciones:</dt>";
   for(var i = 0; i < evoluciones.length; i++){
-	  texto += "<dd>"+evoluciones[i]+"</dd>";
+	  texto += '<dd><img src="'+urlImg+evoluciones[i]+'.png" /></dd>';
   }
   
   texto+="</dl>";
@@ -144,7 +144,7 @@ function getInfo(id) {
 
 function crearImagen(id) {
   var div = document.getElementById("imgDiv");
-  img.setAttribute("src",urlImg+"/"+id+".png");
+  img.setAttribute("src",urlImg+id+".png");
   div.replaceChild(img,div.childNodes[0]);
 }
 

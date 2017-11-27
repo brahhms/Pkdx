@@ -8,6 +8,11 @@ body {
 	margin: 25px 0 25px 0;
 }
 
+dd img{
+	height: 80px;
+	width: 80px;
+}
+
 
 #info{
   background: #DDDDDD;
