@@ -1,0 +1,9 @@
+/opt/lampp/htdocs/Pkdx/src/main/java/loginbd/Application.java
+/opt/lampp/htdocs/Pkdx/src/main/java/loginbd/configs/DatabaseConfig.java
+/opt/lampp/htdocs/Pkdx/src/main/java/loginbd/controllers/UserController.java
+/opt/lampp/htdocs/Pkdx/src/main/java/loginbd/models/Usuario.java
+/opt/lampp/htdocs/Pkdx/src/main/java/loginbd/models/Favorito.java
+/opt/lampp/htdocs/Pkdx/src/main/java/loginbd/configs/SpringSecurityConfig.java
+/opt/lampp/htdocs/Pkdx/src/main/java/loginbd/models/UsuarioDao.java
+/opt/lampp/htdocs/Pkdx/src/main/java/loginbd/services/UserDetailsServiceImpl.java
+/opt/lampp/htdocs/Pkdx/src/main/java/loginbd/controllers/MainController.java
