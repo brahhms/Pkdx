@@ -68,11 +68,27 @@ btnBuscar.onclick = function() {
   getInfo(id);
 }
 
+//se muestra a partir del objeto pokemon
 function mostrar() {
   var info = document.getElementById('info');
+  var tipos = pokemon.tipos;
+  var habilidades = pokemon.habilidades;
   var texto ="<h4>"+pokemon.nombre+"</h4>"+
           "<p>"+pokemon.info+"</p>";
           console.log(texto);
+   
+  texto+="<p>Tipos:</p>"+
+  "<ul>";  
+  for(var i = 0; i < tipos.length; i++){
+	  texto += "<li>"+tipos[i]+"</li>";
+  }
+  texto+="</ul>";
+  texto+="<p>Habilidades:</p>"+
+  "<ul>";  
+  for(var i = 0; i < habilidades.length; i++){
+	  texto += "<li>"+habilidades[i]+"</li>";
+  }
+  texto+="</ul>";
 
   info.innerHTML = texto;
 }

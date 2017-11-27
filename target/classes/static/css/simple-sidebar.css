@@ -11,7 +11,7 @@ body {
 
 #info{
   background: #DDDDDD;
-  height: 200px;
+  height: inherit;
   width: 300px;
   margin: 0 auto 0 auto;
   border-radius: 20px;
