@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head lang="en">
+<head lang="es">
 	<title>login</title>
 	<div th:replace="fragments/header :: header-css"/>
 </head>
 	<body>
-	    <div class="caja">
-	         
-			 <form method="POST" action="/login" class="form-signin">
-		        <h2 class="form-heading">Log in</h2>
-		
-		        <div class="form-group ${error != null ? 'has-error' : ''}">
-		           
-		            <input name="username" type="text" class="form-control" placeholder="Username"
-		                   autofocus="true"/>
-		            <input name="password" type="password" class="form-control" placeholder="Password"/>
-		            
-		            <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-		            <h4 class="text-center"><a href="/registrar">Crear una cuenta</a></h4>
-		        </div>
-		    </form>
-	      
-	    </div>
+
+      
+	<form class="caja">
+	    <h2 class="form-heading">LogIn</h2>
+	       
+	    <input id="usuario" name="username" type="text" class="form-control" placeholder="Usuario" autofocus="true"/>
+	    <input id="clave" name="password" type="password" class="form-control" placeholder="Clave"/>
+	    
+	    <button onclick="logueame()" class="btn btn-lg btn-primary btn-block" type="button">Acceder</button>
+	    <h4 class="text-center"><a href="/registrar">Crear una cuenta</a></h4>
+	    <p id="dsp"></p>
+	 </form>
+        
 	
+
 	
 	<div th:replace="fragments/footer :: footer"/>
 	

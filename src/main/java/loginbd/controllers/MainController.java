@@ -23,13 +23,20 @@ public class MainController {
 	      return "/login";
 	  }
 	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	  public String autentificar() {
+	      return "/main";
+	  }
+	
 	@RequestMapping(value = "/registrar", method = RequestMethod.GET)
 	  public String registrar() {
 	      return "/registrar";
 	  }
   
+	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	  public String main() {
+				
 	      return "/main";
 	  }
 

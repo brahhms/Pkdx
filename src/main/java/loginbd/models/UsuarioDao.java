@@ -45,6 +45,7 @@ public class UsuarioDao {
   public Usuario getById(long id) {
     return (Usuario) getSession().load(Usuario.class, id);
   }
+  
 
   public void update(Usuario usuario) {
     getSession().update(usuario);

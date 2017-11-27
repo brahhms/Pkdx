@@ -21,7 +21,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/home","/user/**","/registrar").permitAll()
+                .antMatchers("/","/user/**", "/home","/registrar").permitAll()
+                .antMatchers("/main").authenticated()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -43,10 +44,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
     	
     	auth.userDetailsService(userDetailsService);
-    	
-    	/*
-    	 auth.inMemoryAuthentication()
-    	 	.withUser("user").password("password").roles("USER");*/
     
     }
 
@@ -56,7 +53,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/**","/resources/**", "/static/**", "/css/**", "/src/**","/webjars/jquery/**","/webjars/bootstrap/**");
+                .antMatchers("/resources/**", "/static/**", "/css/**","/images/**" ,"/src/**","/webjars/jquery/**","/webjars/bootstrap/**");
     }
 
 }

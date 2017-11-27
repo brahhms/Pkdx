@@ -39,9 +39,9 @@ public class UserController {
       userId = String.valueOf(usuario.getId());
     }
     catch(Exception ex) {
-      return "Usuario not found";
+      return "El usuario no ha sido encontrado";
     }
-    return "The user id is: " + userId;
+    return "El id del usuario es: " + userId;
   }
 
   
@@ -50,7 +50,6 @@ public class UserController {
   public String create(@RequestParam("clave")String clave, @RequestParam("nombre")String nombre) {
     try {
       Usuario usuario = new Usuario(clave, nombre);
-       
       _userDao.save(usuario);
     }
     catch(Exception ex) {
@@ -59,6 +58,5 @@ public class UserController {
     return "Ud. se ha sido registrado exitosamente!";
   }
 
-  
   
 } // class UserController
