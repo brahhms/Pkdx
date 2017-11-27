@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="es">
+	<title>home</title>
+	<div th:replace="fragments/header :: header-css"/>
+</head>
+	<body>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+		    <ul th:fragment="sidebar" class="sidebar-nav">
+		         <li class="sidebar-brand">
+		             <a href="#" th:inline="text">[[${#httpServletRequest.remoteUser}]]</a>
+		         </li>
+		         <li>
+		             <a th:href="@{/logout}">CerrarSesion</a>
+		         </li>
+		      
+		     </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Contenido Principal -->
+        <div id="page-content-wrapper">
+        	
+            <div th:replace="fragments/body :: pokemon"/>
+            <img class="icono" src="/images/icon.png" onclick="agregar()"/>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+		  <!-- Boton de desplazamiento (script) -->
+		  <script>
+		    $("#btnUsuario").click(function(e) {
+		      e.preventDefault();
+		      $("#wrapper").toggleClass("toggled");
+		    });
+		  </script>
+		  <script src="/src/ajax.js"></script>
+		<script src="/src/api.js"></script>
+	
+	</body>
+</html>
