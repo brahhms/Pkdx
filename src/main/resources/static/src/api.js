@@ -73,22 +73,28 @@ function mostrar() {
   var info = document.getElementById('info');
   var tipos = pokemon.tipos;
   var habilidades = pokemon.habilidades;
+  var evoluciones = pokemon.evoluciones;
   var texto ="<h4>"+pokemon.nombre+"</h4>"+
           "<p>"+pokemon.info+"</p>";
           console.log(texto);
    
-  texto+="<p>Tipos:</p>"+
-  "<ul>";  
+  texto+='<dl class="dl-horizontal">'+
+  '<dt>Tipos:</dt>';  
   for(var i = 0; i < tipos.length; i++){
-	  texto += "<li>"+tipos[i]+"</li>";
+	  texto += "<dd>"+tipos[i]+"</dd>";
   }
-  texto+="</ul>";
-  texto+="<p>Habilidades:</p>"+
-  "<ul>";  
+  
+  texto+="<dt>Habilidades:</dt>";
+ 
   for(var i = 0; i < habilidades.length; i++){
-	  texto += "<li>"+habilidades[i]+"</li>";
+	  texto += "<dd>"+habilidades[i]+"</dd>";
   }
-  texto+="</ul>";
+  texto+="<dt>Evoluciones:</dt>";
+  for(var i = 0; i < evoluciones.length; i++){
+	  texto += "<dd>"+evoluciones[i]+"</dd>";
+  }
+  
+  texto+="</dl>";
 
   info.innerHTML = texto;
 }
@@ -102,17 +108,34 @@ function getInfo(id) {
 
       pokemon.nombre = response.name;
       pokemon.setTipos(response.types);
-      pokemon.setHabilidades(response.abilities)
+      pokemon.setHabilidades(response.abilities);
 
       ajax(epSpecies+id,function(request) {
         var response = request.currentTarget.response || request.target.responseText;
         response = JSON.parse(response);
         pokemon.info = response.flavor_text_entries[3].flavor_text;
-
-        console.log(pokemon);
-        mostrar();
-        crearImagen(id);
-      
+        var chain = response.evolution_chain.url;
+        console.log(chain);
+        
+        ajax(chain,function(request){
+        	var response = request.currentTarget.response || request.target.responseText;
+            response = JSON.parse(response);
+        	  var branch = response.chain;
+        	  pokemon.evoluciones = new Array();
+        	  for (var i = 0; i < 3 ; i++) {
+        		  try {
+        			  var cadena = branch.species.url;
+        			  var x = cadena.lastIndexOf("/");
+        		      var idd = cadena.slice(52, x);
+        			  pokemon.evoluciones.push(idd);
+            	      branch = branch.evolves_to[0];
+        		  } catch (e) {	}
+        	  }
+        	  console.log(pokemon);
+              mostrar();
+              crearImagen(id);
+        });
+  
       });
 
   });
@@ -145,7 +168,7 @@ function Pokemon(){
     this.lugares;               //.location_area_encounters:url
     this.tipos;
     this.habilidades;
-    this.evoluciones = new Array();
+    this.evoluciones;
 }
 
 Pokemon.prototype.setTipos = function(array) {
@@ -162,3 +185,4 @@ Pokemon.prototype.setHabilidades = function(array) {
     this.habilidades.push(habilidad);
   }
 };
+
