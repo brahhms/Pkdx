@@ -191,3 +191,9 @@ body.principal{
 
   padding: 0.25em;
 }
+#cadenaImg div{
+  display: inline-block;
+  }
+/*.contenedor div{
+  display: inline-block;
+}*/
