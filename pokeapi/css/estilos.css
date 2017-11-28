@@ -1,0 +1,193 @@
+*{
+  padding: 0;
+  margin: 0;
+
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+}
+/* ---------Estilos inicio.html-------------*/
+body.inicio{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+  line-height: 1.6;
+
+}
+.interior {
+  background: url(../img/land.jpg);
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px 20px;
+
+}
+ .btnLog{
+  padding-left: 90%;
+  position: absolute;
+  padding-top: 10px;
+}
+.btnLog .btn-log{
+  font-size: 16px;
+  text-decoration: none;
+  border-bottom: #DF0101 2px solid;
+  color: #FFFFFF;
+
+}
+
+.interior .titulo {
+  width: 50%;
+  height: auto;
+
+}
+.interior .pregunta {
+  font-size: 50px;
+  font-weight: bold;
+  font-style: italic;
+  line-height: 1.2;
+}
+.interior .btnstart{
+  font-size: 20px;
+  text-decoration: none;
+  color: #000000;
+  border: #4169E1 3px solid;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 10px 20px;
+
+}
+.interior .btnstart:hover{
+  background: #4169E1;
+}
+
+/* ---------Estilos pokedex.html-------------*/
+body.principal{
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+  font-size: 1em;
+  background: #086A87;
+  background: url(../img/fondo.jpg);
+
+}
+.inicioSe-pkdx {
+  padding-left: 90%;
+  position: absolute;
+  top: 10px;
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+
+}
+#inicioSe{
+  font-size: 16px;
+  text-decoration: none;
+  border-bottom: #FE9A2E 2px solid;
+  color: #FFFFFF;
+
+}
+
+.principal #titulo {
+  margin: 0.5em auto;
+  text-align: center;
+  font-size: 2.5em;
+  color: rgb(241, 196, 15) ;
+  text-shadow: 0 0 10px #013ADF, 0 0 12px #013ADF;
+  font-weight: bold;
+  font-style: italic;
+}
+.buscador {
+  background: #00BFFF;
+  border-radius: 0.5em;
+  margin: auto;
+  max-width: 80%;
+  padding:0;
+  text-align: center;
+  position: relative;
+  align-items: center;
+  border: #FE9A2E 3px solid;
+  display:flex;
+  box-shadow:
+   1px 1px 0 rgb(230, 126, 34),
+   2px 2px 0 rgb(230, 126, 35),
+   3px 3px 0 rgb(230, 126, 36),
+   4px 4px 0 rgb(230, 126, 34),
+   5px 5px 0 rgb(230, 126, 34),
+   6px 6px 0 rgb(230, 126, 34),
+   7px 7px 0 rgb(230, 126, 34)
+  ;
+
+}
+.buscador #id{
+  font-size: 1.3em;
+  width: 75%;
+  padding:0.3em 0.5em ;
+  border:3px solid rgb(245, 176, 65);
+  background: #154360;
+  color: #FFFFFF;
+
+}
+/*nav.buscador datalist#listaPokemon, option#opciones{
+  color: #000000;
+  background: rgb(245, 176, 65);
+  font-size: 1em;
+}*/
+
+.buscador #btnbuscar{
+    padding:0.3em 0.6em ;
+    background-color:rgb(245, 176, 65);
+    color:#000000;
+    font-size: 1.3em;
+    color: #000000;
+    width: 25%;
+    text-align: center;
+    border:3px solid rgb(245, 176, 65);
+}
+#id, #btnbuscar{
+  display: inline-block;
+}
+
+.contenedor {
+
+  margin: 1em 10%;
+  max-width: 1000vh;
+  max-height: 500vh;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  border: rgb(230, 126, 34);
+
+
+
+}
+#contenerImg, .info, .evoluciones{
+  margin: 1em auto;
+  max-width: 95%;
+  text-align: center;
+
+}
+#contenerImg, .info{
+  display: inline-block;
+}
+#contenerImg {
+  background: #FF0040;
+  padding: auto;
+  position: relative;
+  align-items: center;
+
+}
+.info {
+  background: #01DF3A;
+  font-size: 20px;
+
+  padding: 0.25em;
+
+
+}
+.evoluciones {
+  background: #F781F3;
+  font-size: 20px;
+
+  padding: 0.25em;
+}
