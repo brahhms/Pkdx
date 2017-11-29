@@ -11,7 +11,7 @@
         <div id="sidebar-wrapper">
 		    <ul th:fragment="sidebar" class="sidebar-nav">
 		         <li class="sidebar-brand">
-		             <a href="#" th:inline="text">[[${#httpServletRequest.remoteUser}]]</a>
+		             <a id="nombreUsuario" href="#" th:inline="text">[[${#httpServletRequest.remoteUser}]]</a>
 		         </li>
 		         <li>
 		             <a th:href="@{/logout}">CerrarSesion</a>

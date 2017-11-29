@@ -52,10 +52,15 @@ public class UsuarioDao {
     return;
   }
   
-  @SuppressWarnings("unchecked")
-  public List<Favorito> getRoles() {
-    
-    return getSession().createQuery("from Role").list();
-  }
+  public void agregar(Favorito favorito) {
+	  	try {
+	  		getSession().save(favorito);
+		} catch (Exception e) {
+			getSession().update(favorito);
+		}
+	  	
+	    return;
+	  }
+
 
 } // class UsuarioDao

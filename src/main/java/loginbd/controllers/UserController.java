@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import loginbd.models.Favorito;
 import loginbd.models.Usuario;
 import loginbd.models.UsuarioDao;
 
@@ -56,6 +57,21 @@ public class UserController {
       return ex.getMessage();
     }
     return "Ud. se ha sido registrado exitosamente!";
+  }
+  
+  @RequestMapping(value="/agregar" , method = RequestMethod.GET)
+  @ResponseBody
+  public String agregar(@RequestParam("nombre")String nombre,@RequestParam("favorito")String favorito) {
+	  
+	try {
+		long idUsuario = _userDao.getByName(nombre).getId();       
+	    Favorito e = new Favorito(favorito,idUsuario);
+	    _userDao.agregar(e);
+    }
+    catch(Exception ex) {
+      return "no se pudo agregar";
+    }
+    return "agregado";
   }
 
   

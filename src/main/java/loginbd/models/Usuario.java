@@ -63,6 +63,16 @@ public class Usuario{
     
     @OneToMany(mappedBy = "usuario")
     private Collection<Favorito> favoritos;
+
+
+	public Collection<Favorito> getFavoritos() {
+		return favoritos;
+	}
+
+	public void setFavoritos(Collection<Favorito> favoritos) {
+		this.favoritos = favoritos;
+	}
+    
     
 
 }

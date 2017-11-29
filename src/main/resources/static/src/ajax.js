@@ -32,15 +32,16 @@ function logueame() {
 };
 
 function agregar() {
-	  var s = document.getElementById('s').value;
+	var s = document.getElementById('s').value;
+	var nombre = document.getElementById('nombreUsuario').text;
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {  
-    	//
+    	console.log(this.responseText);
       }
     };
-    xhttp.open("GET","/user/agregar?favorito="+s, true);
+    xhttp.open("GET","/user/agregar?nombre="+nombre+"&favorito="+s, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
 	
