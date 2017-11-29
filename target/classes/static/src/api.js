@@ -20,12 +20,16 @@ $( document ).ready(function() {
     epSpecies = url + "pokemon-species/";
     select = document.getElementById('s');
     urlImg = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
+    try {
+  	  mostrarFavoritos();
+  	} catch (e) {}
 });
 
 window.onload = function() {
   crearSelect();
   img = document.getElementById("pokeball");
   img.setAttribute("src","images/pokeball.png");
+  
 }
 
 function crearSelect() {
