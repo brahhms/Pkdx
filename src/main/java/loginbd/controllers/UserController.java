@@ -49,7 +49,10 @@ public class UserController {
   @RequestMapping(value="/save" , method = RequestMethod.POST)
   @ResponseBody
   public String create(@RequestParam("clave")String clave, @RequestParam("nombre")String nombre) {
-    try {
+    if (_userDao.getByName(nombre) != null) {
+		return "Ya existe un usuario con ese nombre";
+	}
+	try {
       Usuario usuario = new Usuario(clave, nombre);
       _userDao.save(usuario);
     }

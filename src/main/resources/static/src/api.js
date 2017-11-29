@@ -76,7 +76,6 @@ function mostrar() {
   var evoluciones = pokemon.evoluciones;
   var texto ="<h4>"+pokemon.nombre+"</h4>"+
           "<p>"+pokemon.info+"</p>";
-          console.log(texto);
    
   texto+='<dl class="dl-horizontal">'+
   '<dt>Tipos:</dt>';  
@@ -131,7 +130,6 @@ function getInfo(id) {
             	      branch = branch.evolves_to[0];
         		  } catch (e) {	}
         	  }
-        	  console.log(pokemon);
               mostrar();
               crearImagen(id);
         });
