@@ -184,3 +184,4 @@ Pokemon.prototype.setHabilidades = function(array) {
   }
 };
 
+

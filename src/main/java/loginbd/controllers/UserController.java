@@ -1,5 +1,10 @@
 package loginbd.controllers;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -77,5 +82,28 @@ public class UserController {
     return "agregado";
   }
 
+  @RequestMapping(value="/get-favoritos" , method = RequestMethod.GET)
+  @ResponseBody
+  public String getFavoritos(@RequestParam("nombre")String nombre) {
+	
+	String json = "{\"favoritos\":[";
+	long idUsuario = _userDao.getByName(nombre).getId(); 
+    List<Favorito> favoritos = _userDao.getFavoritos(idUsuario);
+	
+    try {
+    	for (int i = 0; i < favoritos.size(); i++) {
+    		if (i != 0) {
+	  			json = json+",";
+	  		}
+			json = json+"\""+ favoritos.get(i).getIdFavorito()+"\"";	        
+		}
+	    
+    }
+    catch(Exception ex) {
+    	
+    }
+	json = json+"]}";
+    return json;
+  }
   
 } // class UserController

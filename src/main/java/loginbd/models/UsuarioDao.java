@@ -56,11 +56,15 @@ public class UsuarioDao {
 	  	try {
 	  		getSession().save(favorito);
 		} catch (Exception e) {
-			getSession().update(favorito);
+			getSession().delete(favorito);
 		}
-	  	
 	    return;
-	  }
+  }
+  
+  @SuppressWarnings("unchecked")
+  public List<Favorito> getFavoritos(long id) {
+    return getSession().createQuery("from Favorito where idUsuario ="+id).list();
+  }
 
 
 } // class UsuarioDao

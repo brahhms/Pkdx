@@ -23,8 +23,11 @@ public class Favorito implements Serializable{
 	
 	
 	
+	public Favorito() {
+
+	}
+
 	public Favorito(String idFavorito, Long idUsuario) {
-		super();
 		this.idFavorito = idFavorito;
 		this.idUsuario = idUsuario;
 	}
