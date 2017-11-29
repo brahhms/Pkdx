@@ -74,9 +74,24 @@ dl{
 
 #btnUsuario{
   position: absolute;
-  bottom: 2em;
-  left: 1em;
-  margin: 0 auto 0 auto;
+  top:200px;
+  left: -35px;	
+  height:172px;
+  width:160px;
+  border-bottom-style: none;
+  border-radius:0 100px 100px 0;
+  background-image:url(/images/diglett.png);
+  background-color: transparent; 
+  
+}
+
+footer #btnUsuario{
+  position: absolute;
+  top:281px;
+  left: -50px;	
+  height:172px;
+  width:160px;
+  
 }
 
 .caja{

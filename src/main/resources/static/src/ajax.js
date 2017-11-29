@@ -40,9 +40,9 @@ function agregar() {
     	//
       }
     };
-    xhttp.open("GET", "/", true);
+    xhttp.open("GET","/user/agregar?favorito="+s, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("favorito="+s);
+    xhttp.send();
 	
 };
 
